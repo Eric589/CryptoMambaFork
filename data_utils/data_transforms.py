@@ -18,7 +18,7 @@ class DataTransform:
             self.keys.append('Timestamp_orig')
         for key in self.keys:
             data = torch.tensor(window.get(key).tolist())
-            if key == 'Volume':
+            if key == 'Volume' and data.max() > 1e6:
                 data /= 1e9
             output[key] = data[-1]
             output[f'{key}_old'] = data[-2]

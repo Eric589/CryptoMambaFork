@@ -15,8 +15,8 @@ import pandas as pd
 from datetime import datetime, timezone
 
 BINANCE_URL = "https://api.binance.com/api/v3/klines"
-INTERVAL = "1d"
-INTERVAL_SECONDS = 86400
+INTERVAL = "4h"
+INTERVAL_SECONDS = 14400
 MAX_LIMIT = 1000
 
 
@@ -85,10 +85,10 @@ def save_split(df: pd.DataFrame, out_dir: str, name: str, start: str, end: str):
 def main():
     parser = argparse.ArgumentParser(description="Download Binance daily candles for CryptoMamba")
     parser.add_argument("--symbol", default="BTCUSDT", help="Binance trading pair (default: BTCUSDT)")
-    parser.add_argument("--start",  default="2018-09-17", help="Start date YYYY-MM-DD (inclusive)")
+    parser.add_argument("--start",  default="2024-01-01", help="Start date YYYY-MM-DD (inclusive)")
     parser.add_argument("--end",    default="2026-03-17", help="End date YYYY-MM-DD (inclusive)")
-    parser.add_argument("--train_end", default="2024-10-01", help="Train/val split date")
-    parser.add_argument("--val_end",   default="2025-10-01", help="Val/test split date")
+    parser.add_argument("--train_end", default="2025-07-19", help="Train/val split date")
+    parser.add_argument("--val_end",   default="2025-11-17", help="Val/test split date")
     parser.add_argument("--out_dir",   default="./data",     help="Root output directory")
     args = parser.parse_args()
 
