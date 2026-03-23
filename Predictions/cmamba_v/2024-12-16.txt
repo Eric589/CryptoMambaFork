@@ -1,0 +1,5 @@
+Prediction date: 2024-12-16
+Prediction: 103677.27
+Today value: 104298.7
+Smart trade: 29.97% sell
+Vanilla trade: -

@@ -1,0 +1,13 @@
+torch
+torchvision
+torchaudio
+setuptools
+pyaml
+lightning
+matplotlib
+seaborn
+pandas
+einops
+tensorboard
+mamba-ssm[causal-conv1d]
+requests

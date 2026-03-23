@@ -1,0 +1,5 @@
+Prediction date: 2025-10-11
+Prediction: 112213.34
+Today value: 112774.5
+Smart trade: 25.0% sell
+Vanilla trade: -
