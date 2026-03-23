@@ -86,7 +86,7 @@ def main():
     parser = argparse.ArgumentParser(description="Download Binance daily candles for CryptoMamba")
     parser.add_argument("--symbol", default="BTCUSDT", help="Binance trading pair (default: BTCUSDT)")
     parser.add_argument("--start",  default="2024-01-01", help="Start date YYYY-MM-DD (inclusive)")
-    parser.add_argument("--end",    default="2026-03-17", help="End date YYYY-MM-DD (inclusive)")
+    parser.add_argument("--end",    default="2026-03-23", help="End date YYYY-MM-DD (inclusive)")
     parser.add_argument("--train_end", default="2025-07-19", help="Train/val split date")
     parser.add_argument("--val_end",   default="2025-11-17", help="Val/test split date")
     parser.add_argument("--out_dir",   default="./data",     help="Root output directory")

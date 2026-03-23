@@ -233,16 +233,17 @@ if __name__ == '__main__':
             shift = factors.get(model.y_key).get('min')
             data[model.y_key] = data[model.y_key] * scale + shift
 
-        balance, balance_in_time = trade(data, time_key, timstamps, targets, preds, 
-                                         balance=args.balance, mode=args.trade_mode, 
-                                         risk=args.risk, y_key=model.y_key)
+        balance, balance_in_time = trade(data, time_key, timstamps, targets, preds,
+                                         balance=args.balance, mode=args.trade_mode,
+                                         risk=args.risk, y_key=model.y_key,
+                                         jumps=data_config.get('jumps', 86400))
 
         print(f'{conf} -- Final balance: {round(balance, 2)}')
         print(f'{conf} -- Maximum Draw Down : {round(max_drawdown(balance_in_time) * 100, 2)}')
 
         label = conf.replace("_nv", "").replace("_v", "")
         label = LABEL_DICT.get(label)
-        tmp = [timstamps[0] - 24 * 60 * 60] + timstamps
+        tmp = [timstamps[0] - data_config.get('jumps', 86400)] + timstamps
         tmp = [datetime.fromtimestamp(int(x)) for x in tmp]
         sns.lineplot(x=tmp, 
                      y=balance_in_time, 

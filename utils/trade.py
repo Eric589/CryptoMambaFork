@@ -67,13 +67,18 @@ def buy_sell_vanilla(today, pred, balance, shares, tr=0.01):
     return balance, shares
 
 
-def trade(data, time_key, timstamps, targets, preds, balance=100, mode='smart_v2', risk=5, y_key='Close'):
+def trade(data, time_key, timstamps, targets, preds, balance=100, mode='smart_v2', risk=5, y_key='Close', jumps=86400):
     balance_in_time = [balance]
     shares = 0
+    data_sorted = data.sort_values(time_key).reset_index(drop=True)
+    ts_to_idx = {int(t): i for i, t in enumerate(data_sorted[time_key])}
 
     for ts, target, pred in zip(timstamps, targets, preds):
-        today = data[data[time_key] == int(ts - 24 * 60 * 60)].iloc[0][y_key]
-        assert round(target, 2) == round(data[data[time_key] == int(ts)].iloc[0][y_key], 2)
+        idx = ts_to_idx.get(int(ts))
+        if idx is None or idx == 0:
+            continue
+        today = data_sorted.iloc[idx - 1][y_key]
+        assert round(target, 2) == round(data_sorted.iloc[idx][y_key], 2)
         if mode == 'smart':
             balance, shares = buy_sell_smart(today, pred, balance, shares, risk=risk)
         if mode == 'smart_w_short':
